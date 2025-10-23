@@ -1,0 +1,43 @@
+.main-content-ctn{
+    width: 90%;
+    padding-top: 60px;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    position: relative;
+
+    img{
+        width: 20%;
+        position: absolute;
+        top: 80px;
+        right: 460px;
+    }
+}
+
+.info-main-ctn{
+    p{
+        font-size: .9rem;
+    }
+}
+
+.location-info-ctn{
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 15px;
+}
+
+.weather-info-ctn{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+
+    h3{
+        font-size: 3rem;
+        font-weight: 400;
+    }
+}

@@ -5,6 +5,8 @@ import WeatherData from "./Components/WeatherData/WeatherData"
 
 function App() {
 
+  // const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+
   return (
     <div className='container'>
       <SearchBar />

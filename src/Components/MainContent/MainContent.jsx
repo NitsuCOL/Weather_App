@@ -1,5 +1,38 @@
 import "./MainContent.css";
-import NubladoImg from "../../assets/weatherImg/Nublado.webp";
+import soleadoImg from "../../assets/weatherImg/sunnyImage.png";
+import nubladoImg from "../../assets/weatherImg/Nublado.webp";
+import brumaImage from "../../assets/weatherImg/brumaImage.png";
+import electricRainImage from "../../assets/weatherImg/ElectricRainImage.png";
+import rainImage from "../../assets/weatherImg/rainImage.png";
+import snowyImage from "../../assets/weatherImg/snowyImage.png";
+
+const getWeatherImage = (main) => {
+  switch (main) {
+    case "Clear":
+      return soleadoImg;
+    case "Clouds":
+      return nubladoImg;
+    case "Mist":
+    case "Smoke":
+    case "Haze":
+    case "Dust":
+    case "Fog":
+    case "Sand":
+    case "Ash":
+    case "Squall":
+    case "Tornado":
+      return brumaImage;
+    case "Thunderstorm":
+      return electricRainImage;
+    case "Rain":
+    case "Drizzle":
+      return rainImage;
+    case "Snow":
+      return snowyImage;
+    default:
+      return soleadoImg;
+  }
+};
 
 const MainContent = ({ weatherData }) => {
   if (!weatherData) {
@@ -10,15 +43,12 @@ const MainContent = ({ weatherData }) => {
     );
   }
 
-  const date = new Date();
-  const formattedDate = new Intl.DateTimeFormat("es-CO", {
-    weekday: "long", // día de la semana
+  const formattedDate = new Intl.DateTimeFormat("es", {
+    weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(date);
+  }).format(new Date());
 
   return (
     <main className="main-content-ctn">
@@ -31,10 +61,12 @@ const MainContent = ({ weatherData }) => {
         </div>
         <div className="weather-info-ctn">
           <h3>{weatherData.main.temp}°C</h3>
-          <p style={{ textTransform: "capitalize" }}>{weatherData.weather[0].description}</p>
+          <p style={{ textTransform: "capitalize" }}>
+            {weatherData.weather[0].description}
+          </p>
         </div>
       </div>
-      <img src={NubladoImg} alt="" />
+      <img src={getWeatherImage(weatherData.weather[0].main)} alt="" />
     </main>
   );
 };

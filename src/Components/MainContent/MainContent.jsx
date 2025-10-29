@@ -30,19 +30,19 @@ const getWeatherImage = (main) => {
 
 const MainContent = ({ weatherData }) => {
   const [displayedData, setDisplayedData] = useState(null);
-  const [isChanging, setIsChanging] = useState(false);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     if (!weatherData) return;
 
-    setIsChanging(true);
+    setAnimate(false);
 
-    const fadeTimeout = setTimeout(() => {
+    const timeout = setTimeout(() => {
       setDisplayedData(weatherData);
-      setIsChanging(false);
-    }, 400);
+      setAnimate(true);
+    }, 50);
 
-    return () => clearTimeout(fadeTimeout);
+    return () => clearTimeout(timeout);
   }, [weatherData]);
 
   if (!displayedData)
@@ -60,7 +60,7 @@ const MainContent = ({ weatherData }) => {
   }).format(new Date());
 
   return (
-    <main className={`main-content-ctn ${isChanging ? "changing" : ""}`}>
+    <main className={`main-content-ctn ${animate ? "animate" : ""}`}>
       <div className="info-main-ctn">
         <div className="location-info-ctn">
           <h2>{displayedData.sys.country}, {displayedData.name}</h2>
@@ -73,7 +73,7 @@ const MainContent = ({ weatherData }) => {
           </p>
         </div>
       </div>
-      <img src={getWeatherImage(displayedData.weather[0].main)} alt="" />
+      <img src={getWeatherImage(displayedData.weather[0].main)} alt="Icono del clima" />
     </main>
   );
 };

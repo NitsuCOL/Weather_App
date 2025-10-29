@@ -41,12 +41,3 @@
         font-weight: 400;
     }
 }
-
-.main-content-ctn {
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-out;
-}
-
-.main-content-ctn.changing {
-    opacity: 0;
-    transform: translateY(10px);
-}

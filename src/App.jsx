@@ -20,7 +20,10 @@ function App() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=es`)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
+        if(data.cod === "404"){
+          alert("Ciudad no encontrada.");
+          return;
+        }
         setWeatherData(data);
       })
       .catch(error => console.log(error))
